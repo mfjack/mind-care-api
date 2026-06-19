@@ -1,5 +1,10 @@
 package com.mindcare;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import com.mindcare.model.Appointment;
+import com.mindcare.model.Patient;
 import com.mindcare.model.Psychologist;
 
 public class App {
@@ -13,13 +18,23 @@ public class App {
                 "Psicóloga Clínica",
                 "Especialista em TCC",
                 50,
-                150.0);
+                150.0
+        );
 
-        System.out.println("Name: " + psychologist.getName());
-        System.out.println("License: " + psychologist.getLicenseNumber());
-        System.out.println("Specialty: " + psychologist.getSpecialty());
-        System.out.println("Bio: " + psychologist.getBio());
-        System.out.println("Session Duration: " + psychologist.getSessionDuration() + " min");
-        System.out.println("Session Price: R$ " + psychologist.getSessionPrice());
+        Patient patient = new Patient(
+            "Marlon", 
+            "jack@jack.com", 
+            "coxinha123",
+            "22997823207"
+        );
+
+        LocalDate date = LocalDate.of(2026, 6, 25);
+        LocalTime time = LocalTime.of(14, 30);
+
+        Appointment appointment = new Appointment(patient, psychologist, date, time);
+
+        System.out.println("Status: " + appointment.getStatus());
+        appointment.cancel();
+        appointment.confirm();
     }
 }
