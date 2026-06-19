@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import com.mindcare.model.Appointment;
 import com.mindcare.model.Patient;
 import com.mindcare.model.Psychologist;
+import com.mindcare.service.AppointmentService;
 
 public class App {
     public static void main(String[] args) {
@@ -27,14 +28,22 @@ public class App {
             "coxinha123",
             "22997823207"
         );
-
+        
         LocalDate date = LocalDate.of(2026, 6, 25);
         LocalTime time = LocalTime.of(14, 30);
-
+        LocalDate date2 = LocalDate.of(2027, 6, 25);
+        LocalTime time2 = LocalTime.of(14, 30);
+        
         Appointment appointment = new Appointment(patient, psychologist, date, time);
-
+        Appointment appointment2 = new Appointment(patient, psychologist, date2, time2);
+        
         System.out.println("Status: " + appointment.getStatus());
         appointment.cancel();
         appointment.confirm();
+        
+        AppointmentService appointmentService = new AppointmentService();
+        appointmentService.addAppointment(appointment);
+        appointmentService.addAppointment(appointment2);
+        appointmentService.listAllAppointments();
     }
 }
