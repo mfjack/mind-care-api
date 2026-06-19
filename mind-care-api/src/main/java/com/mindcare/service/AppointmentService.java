@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mindcare.model.Appointment;
+import com.mindcare.model.Psychologist;
 
 public class AppointmentService {
     private List<Appointment> appointments;
@@ -20,11 +21,16 @@ public class AppointmentService {
     public void listAllAppointments() {
         for (Appointment appointment : appointments) {
             System.out.println(
-                appointment.getPatient().getName() + " a consulta agendada com " +
-                appointment.getPsychologist().getName() + " no dia " +
-                appointment.getDate() + " as " + appointment.getTime() +
-                " foi " + appointment.getStatus()
-            );
+                    appointment.getPatient().getName() + " a consulta agendada com " +
+                            appointment.getPsychologist().getName() + " no dia " +
+                            appointment.getDate() + " as " + appointment.getTime() +
+                            " foi " + appointment.getStatus());
         }
+    }
+
+    public List<Appointment> findByPsychologist(Psychologist psychologist) {
+        return appointments.stream()
+                .filter(appointment -> appointment.getPsychologist().equals(psychologist))
+                .toList();
     }
 }

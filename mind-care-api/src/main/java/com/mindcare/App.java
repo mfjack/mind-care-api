@@ -2,6 +2,7 @@ package com.mindcare;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import com.mindcare.model.Appointment;
 import com.mindcare.model.Patient;
@@ -19,31 +20,36 @@ public class App {
                 "Psicóloga Clínica",
                 "Especialista em TCC",
                 50,
-                150.0
-        );
+                150.0);
 
         Patient patient = new Patient(
-            "Marlon", 
-            "jack@jack.com", 
-            "coxinha123",
-            "22997823207"
-        );
-        
+                "Marlon",
+                "jack@jack.com",
+                "coxinha123",
+                "22997823207");
+
         LocalDate date = LocalDate.of(2026, 6, 25);
         LocalTime time = LocalTime.of(14, 30);
         LocalDate date2 = LocalDate.of(2027, 6, 25);
         LocalTime time2 = LocalTime.of(14, 30);
-        
+
         Appointment appointment = new Appointment(patient, psychologist, date, time);
         Appointment appointment2 = new Appointment(patient, psychologist, date2, time2);
-        
+
         System.out.println("Status: " + appointment.getStatus());
         appointment.cancel();
         appointment.confirm();
-        
+
         AppointmentService appointmentService = new AppointmentService();
         appointmentService.addAppointment(appointment);
         appointmentService.addAppointment(appointment2);
         appointmentService.listAllAppointments();
+
+        List<Appointment> jessicaAppointments = appointmentService.findByPsychologist(psychologist);
+        System.out.println("Consultas da Jéssica");
+
+        for (Appointment a : jessicaAppointments) {
+            System.out.println(a.getDate() + " as " + a.getTime());
+        }
     }
 }
