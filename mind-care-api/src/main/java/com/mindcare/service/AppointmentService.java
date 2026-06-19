@@ -40,4 +40,9 @@ public class AppointmentService {
                 .filter(appointment -> appointment.getPatient().equals(patient))
                 .toList();
     }
+
+    public void notifyParticipants(Appointment appointment, String message) {
+        appointment.getPatient().notify(message);
+        appointment.getPsychologist().notify(message);
+    }
 }

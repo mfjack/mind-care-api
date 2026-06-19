@@ -58,5 +58,10 @@ public class App {
         for (Appointment a : patientJessica) {
             System.out.println(a.getPatient().getName());
         }
+
+        patient.notify("Sua consulta foi confirmada!");
+        psychologist.notify("Você tem uma nova consulta agendada!");
+
+        appointmentService.notifyParticipants(appointment, "Fulano, sua consulta está marcada");
     }
 }

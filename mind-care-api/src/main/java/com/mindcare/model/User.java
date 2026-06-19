@@ -1,6 +1,6 @@
 package com.mindcare.model;
 
-public class User {
+public class User implements Notifiable {
     private String name;
     private String phone;
     private String email;
@@ -23,5 +23,10 @@ public class User {
 
     public String getPhone() {
         return phone;
+    }
+
+    @Override
+    public void notify(String message) {
+        System.out.println("Notificando " + name + ": " + message);
     }
 }
