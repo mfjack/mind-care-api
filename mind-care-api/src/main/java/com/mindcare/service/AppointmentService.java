@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mindcare.model.Appointment;
+import com.mindcare.model.Patient;
 import com.mindcare.model.Psychologist;
 
 public class AppointmentService {
@@ -31,6 +32,12 @@ public class AppointmentService {
     public List<Appointment> findByPsychologist(Psychologist psychologist) {
         return appointments.stream()
                 .filter(appointment -> appointment.getPsychologist().equals(psychologist))
+                .toList();
+    }
+
+    public List<Appointment> findByPatient(Patient patient) {
+        return appointments.stream()
+                .filter(appointment -> appointment.getPatient().equals(patient))
                 .toList();
     }
 }

@@ -51,5 +51,12 @@ public class App {
         for (Appointment a : jessicaAppointments) {
             System.out.println(a.getDate() + " as " + a.getTime());
         }
+
+        List<Appointment> patientJessica = appointmentService.findByPatient(patient);
+        System.out.println("Pacientes de Jéssica");
+
+        for (Appointment a : patientJessica) {
+            System.out.println(a.getPatient().getName());
+        }
     }
 }
